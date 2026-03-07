@@ -1,0 +1,302 @@
+
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MomentNow 特定商取引法に基づく表記</title>
+  <meta name="description" content="MomentNow の特定商取引法に基づく表記です。販売事業者、販売価格、支払方法、提供時期、返品・キャンセル等について記載しています。" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.14);
+      --text: #edf2ff;
+      --muted: #b7c0d8;
+      --accent: #ff6b57;
+      --accent-2: #8b5cf6;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --max-width: 920px;
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 107, 87, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(139, 92, 246, 0.20), transparent 32%),
+        linear-gradient(180deg, #0b1020 0%, #111a33 100%);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: #ffd1cb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 72px 0 28px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, rgba(255, 107, 87, 0.16), rgba(139, 92, 246, 0.16));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffe3de;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 16px 0 8px;
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .meta {
+      margin-top: 18px;
+      color: #dbe4ff;
+      font-size: 14px;
+    }
+
+    .content {
+      display: grid;
+      gap: 16px;
+      padding: 12px 0 72px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+      backdrop-filter: blur(12px);
+    }
+
+    section h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    p,
+    li,
+    dd {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    dl {
+      margin: 0;
+      display: grid;
+      grid-template-columns: 240px minmax(0, 1fr);
+      gap: 14px 20px;
+    }
+
+    dt {
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    dd {
+      margin: 0;
+    }
+
+    .note {
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: #d6def6;
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 0 0 56px;
+      color: #aab5d3;
+      font-size: 13px;
+    }
+
+    .footer-card {
+      padding: 20px 24px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    @media (max-width: 720px) {
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-card,
+      section {
+        padding: 24px;
+      }
+
+      dl {
+        grid-template-columns: 1fr;
+        gap: 8px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: min(calc(100% - 20px), var(--max-width));
+      }
+
+      .hero-card,
+      section,
+      .footer-card {
+        border-radius: 16px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="eyebrow">MomentNow ・ Legal</div>
+        <h1>特定商取引法に基づく表記</h1>
+        <p class="lead">
+          MomentNow における有料機能の販売条件等について、特定商取引法に基づき表示しています。
+        </p>
+        <p class="meta">最終更新日：2026年3月7日</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="content">
+      <section>
+        <h2>販売事業者</h2>
+        <dl>
+          <dt>事業者名</dt>
+          <dd>Hikaru Sato</dd>
+
+          <dt>所在地</dt>
+          <dd>請求があった場合、遅滞なく開示いたします。</dd>
+
+          <dt>電話番号</dt>
+          <dd>請求があった場合、遅滞なく開示いたします。</dd>
+
+          <dt>メールアドレス</dt>
+          <dd><a href="mailto:sato.hikaru.dev@gmail.com">sato.hikaru.dev@gmail.com</a></dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>販売価格</h2>
+        <dl>
+          <dt>商品・サービス名</dt>
+          <dd>MomentNow 有料機能</dd>
+
+          <dt>販売価格</dt>
+          <dd>500円（税込）</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>提供内容</h2>
+        <dl>
+          <dt>内容</dt>
+          <dd>購入後24時間に限り、1動画あたり最大30分まで撮影できる機能を利用できます。</dd>
+
+          <dt>利用条件</dt>
+          <dd>利用可能期間終了後は、当該有料機能は自動的に終了します。</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>お支払い方法・時期</h2>
+        <dl>
+          <dt>支払方法</dt>
+          <dd>App Store のアプリ内課金によります。</dd>
+
+          <dt>支払時期</dt>
+          <dd>購入手続き完了時に課金されます。詳細は App Store の定める条件に従います。</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>サービス提供時期</h2>
+        <dl>
+          <dt>提供時期</dt>
+          <dd>決済完了後、直ちに利用可能となります。ただし、通信環境やシステム状況等により反映に時間がかかる場合があります。</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>返品・キャンセルについて</h2>
+        <dl>
+          <dt>返品・キャンセル</dt>
+          <dd>デジタルコンテンツの性質上、購入完了後の返品、キャンセル、返金は原則としてお受けできません。</dd>
+
+          <dt>例外</dt>
+          <dd>法令に基づく場合または Apple が定める返金ポリシー等が適用される場合は、この限りではありません。</dd>
+        </dl>
+      </section>
+
+      <section>
+        <h2>動作環境</h2>
+        <dl>
+          <dt>対応環境</dt>
+          <dd>MomentNow が対応する iOS 端末および対応OSバージョンが必要です。最新の対応状況は App Store の掲載情報をご確認ください。</dd>
+        </dl>
+      </section>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-card">© MomentNow. All rights reserved.</div>
+    </div>
+  </footer>
+</body>
+</html>
