@@ -1,0 +1,382 @@
+
+
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MomentNow プライバシーポリシー</title>
+  <meta name="description" content="MomentNow のプライバシーポリシーです。収集する情報、利用目的、第三者提供、保存期間、お問い合わせ先などについて記載しています。" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-elevated: rgba(255, 255, 255, 0.08);
+      --card: rgba(255, 255, 255, 0.06);
+      --border: rgba(255, 255, 255, 0.14);
+      --text: #edf2ff;
+      --muted: #b7c0d8;
+      --accent: #ff6b57;
+      --accent-2: #8b5cf6;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.35);
+      --max-width: 920px;
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(255, 107, 87, 0.18), transparent 30%),
+        radial-gradient(circle at top right, rgba(139, 92, 246, 0.20), transparent 32%),
+        linear-gradient(180deg, #0b1020 0%, #111a33 100%);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a {
+      color: #ffd1cb;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max-width));
+      margin: 0 auto;
+    }
+
+    .hero {
+      padding: 72px 0 28px;
+    }
+
+    .hero-card {
+      background: linear-gradient(135deg, rgba(255, 107, 87, 0.16), rgba(139, 92, 246, 0.16));
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 32px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(16px);
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      color: #ffe3de;
+      font-size: 13px;
+      letter-spacing: 0.04em;
+    }
+
+    h1 {
+      margin: 16px 0 8px;
+      font-size: clamp(32px, 6vw, 52px);
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--muted);
+      font-size: 16px;
+    }
+
+    .meta {
+      margin-top: 18px;
+      color: #dbe4ff;
+      font-size: 14px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 260px minmax(0, 1fr);
+      gap: 24px;
+      padding: 12px 0 72px;
+    }
+
+    .toc {
+      position: sticky;
+      top: 20px;
+      align-self: start;
+      padding: 20px;
+      border-radius: var(--radius);
+      background: var(--card);
+      border: 1px solid var(--border);
+      backdrop-filter: blur(12px);
+    }
+
+    .toc h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+      color: #ffffff;
+    }
+
+    .toc ol {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .toc li + li {
+      margin-top: 8px;
+    }
+
+    .content {
+      display: grid;
+      gap: 16px;
+    }
+
+    section {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.16);
+      backdrop-filter: blur(12px);
+    }
+
+    section h2 {
+      margin: 0 0 14px;
+      font-size: 24px;
+      line-height: 1.3;
+      letter-spacing: -0.02em;
+    }
+
+    p,
+    li {
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    ul {
+      margin: 0;
+      padding-left: 20px;
+    }
+
+    ul li + li {
+      margin-top: 8px;
+    }
+
+    .note {
+      margin-top: 12px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.05);
+      color: #d6def6;
+      font-size: 14px;
+    }
+
+    .footer {
+      padding: 0 0 56px;
+      color: #aab5d3;
+      font-size: 13px;
+    }
+
+    .footer-card {
+      padding: 20px 24px;
+      border-radius: 18px;
+      border: 1px solid var(--border);
+      background: rgba(255, 255, 255, 0.05);
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      font-size: 0.95em;
+      color: #fff4f2;
+    }
+
+    @media (max-width: 860px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: static;
+      }
+
+      .hero {
+        padding-top: 40px;
+      }
+
+      .hero-card,
+      section {
+        padding: 24px;
+      }
+    }
+
+    @media (max-width: 520px) {
+      .container {
+        width: min(calc(100% - 20px), var(--max-width));
+      }
+
+      .hero-card,
+      section,
+      .toc,
+      .footer-card {
+        border-radius: 16px;
+      }
+
+      h1 {
+        font-size: 30px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="container">
+      <div class="hero-card">
+        <div class="eyebrow">MomentNow ・ Privacy Policy</div>
+        <h1>プライバシーポリシー</h1>
+        <p class="lead">
+          MomentNow（以下「本アプリ」といいます。）は、利用者のプライバシーを尊重し、個人情報および利用情報を適切に取り扱います。
+          本ポリシーは、本アプリにおける情報の取得、利用、管理等について説明するものです。
+        </p>
+        <p class="meta">最終更新日：2026年3月7日</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="layout">
+      <nav class="toc" aria-label="目次">
+        <h2>目次</h2>
+        <ol>
+          <li><a href="#section-1">取得する情報</a></li>
+          <li><a href="#section-2">情報の利用目的</a></li>
+          <li><a href="#section-3">第三者提供</a></li>
+          <li><a href="#section-4">外部サービスの利用</a></li>
+          <li><a href="#section-5">保存期間と削除</a></li>
+          <li><a href="#section-6">安全管理</a></li>
+          <li><a href="#section-7">未成年の利用</a></li>
+          <li><a href="#section-8">ポリシーの変更</a></li>
+          <li><a href="#section-9">お問い合わせ</a></li>
+        </ol>
+      </nav>
+
+      <div class="content">
+        <section id="section-1">
+          <h2>1. 取得する情報</h2>
+          <p>本アプリでは、サービス提供のために以下の情報を取得することがあります。</p>
+          <ul>
+            <li>利用者が本アプリ上で撮影、アップロード、共有する動画、画像、サムネイルその他のコンテンツ</li>
+            <li>共有用URL、ストリームID、再生URL、視聴回数など、コンテンツ配信に必要な情報</li>
+            <li>端末情報、OSバージョン、アプリバージョン、言語、タイムゾーン等の技術情報</li>
+            <li>クラッシュログ、エラーログ、利用状況に関するログ</li>
+            <li>課金機能を利用する場合に、ストアから提供される購入状態やトランザクション確認に必要な情報</li>
+          </ul>
+          <div class="note">
+            本アプリは、必要な範囲でカメラ、マイク、写真ライブラリ等へのアクセス許可を利用者に求める場合があります。これらの情報は、利用者が許可した範囲でのみ利用されます。
+          </div>
+        </section>
+
+        <section id="section-2">
+          <h2>2. 情報の利用目的</h2>
+          <p>取得した情報は、以下の目的のために利用します。</p>
+          <ul>
+            <li>動画の撮影、保存、アップロード、配信、再生および共有機能を提供するため</li>
+            <li>課金機能、利用可能時間、提供プラン等の管理を行うため</li>
+            <li>不正利用、障害、規約違反等の防止または対応のため</li>
+            <li>本アプリの品質向上、機能改善、新機能開発のため</li>
+            <li>利用状況の分析、サポート対応、お問い合わせ対応のため</li>
+          </ul>
+        </section>
+
+        <section id="section-3">
+          <h2>3. 第三者提供</h2>
+          <p>
+            本アプリは、法令に基づく場合を除き、利用者の個人情報を利用者本人の同意なく第三者へ提供しません。
+            ただし、サービス提供に必要な範囲で、クラウドインフラ、コンテンツ配信、決済、分析等の外部事業者を利用することがあります。
+          </p>
+        </section>
+
+        <section id="section-4">
+          <h2>4. 外部サービスの利用</h2>
+          <p>本アプリは、以下のような外部サービスまたはこれに類するサービスを利用する場合があります。</p>
+          <ul>
+            <li>クラウドストレージ、サーバー、CDN等の配信基盤</li>
+            <li>アプリ内課金のためのアプリストア提供機能</li>
+            <li>障害解析、ログ収集、利用状況の分析ツール</li>
+          </ul>
+          <p>
+            これらの外部サービスにおいては、各事業者の定めるプライバシーポリシーその他の条件が適用される場合があります。
+          </p>
+        </section>
+
+        <section id="section-5">
+          <h2>5. 保存期間と削除</h2>
+          <p>
+            本アプリは、提供機能の性質上、アップロードされた動画、サムネイル、再生用データ、視聴情報等を一定期間保存することがあります。
+            保存期間は、機能仕様、運用上の必要性、法令上の要請等を考慮して定めます。
+          </p>
+          <ul>
+            <li>端末内に保存されたデータは、利用者自身の操作により削除できる場合があります。</li>
+            <li>サーバー上のデータは、一定期間経過後に自動削除されます。</li>
+            <li>障害調査や不正利用対策のため、一部ログを必要な期間保存することがあります。</li>
+          </ul>
+        </section>
+
+        <section id="section-6">
+          <h2>6. 安全管理</h2>
+          <p>
+            本アプリは、取得した情報への不正アクセス、漏えい、改ざん、滅失等を防止するため、合理的な安全管理措置を講じるよう努めます。
+            ただし、インターネット通信およびクラウドサービスの性質上、完全な安全性を保証するものではありません。
+          </p>
+        </section>
+
+        <section id="section-7">
+          <h2>7. 未成年の利用</h2>
+          <p>
+            未成年の利用者は、必要に応じて保護者等の同意を得たうえで本アプリを利用してください。
+            開発者が未成年から保護者の同意なく個人情報を取得したことが判明した場合、適切な対応を行います。
+          </p>
+        </section>
+
+        <section id="section-8">
+          <h2>8. ポリシーの変更</h2>
+          <p>
+            本ポリシーの内容は、法令の改正、サービス内容の変更、運用上の必要その他の理由により、予告なく変更されることがあります。
+            変更後のプライバシーポリシーは、本ページに掲載した時点から効力を生じます。
+          </p>
+        </section>
+
+        <section id="section-9">
+          <h2>9. お問い合わせ</h2>
+          <p>
+            本ポリシーに関するお問い合わせは、以下の連絡先までお願いいたします。
+          </p>
+          <p>
+            開発者：Hikaru Sato<br />
+            連絡先：<a href="mailto:sato.hikaru.dev@gmail.com">sato.hikaru.dev@gmail.com</a>
+          </p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-card">
+        © MomentNow. All rights reserved.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
