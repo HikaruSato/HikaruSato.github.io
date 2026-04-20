@@ -1,0 +1,581 @@
+
+
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ぴょんぴょんレース | 近くの友達とその場で対戦</title>
+    <meta
+      name="description"
+      content="ぴょんぴょんレースは、近くの友達とその場ですぐに対戦できるローカル対戦レースゲームです。引っ張ってジャンプするだけのシンプル操作で、ランチや集まりが盛り上がります。"
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="ぴょんぴょんレース" />
+    <meta
+      property="og:description"
+      content="近くの友達とその場ですぐに対戦できる、ローカル対戦レースゲーム。"
+    />
+    <meta property="og:image" content="img/app-icon.jpg" />
+    <meta name="theme-color" content="#fff5dc" />
+    <style>
+      :root {
+        --bg: #fffaf0;
+        --bg-accent: #fff0b8;
+        --text: #2d241c;
+        --subtext: #65584d;
+        --primary: #ff8a3d;
+        --primary-dark: #e56f22;
+        --card: rgba(255, 255, 255, 0.88);
+        --border: rgba(45, 36, 28, 0.1);
+        --shadow: 0 20px 50px rgba(45, 36, 28, 0.12);
+        --radius: 24px;
+        --max-width: 1120px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+        color: var(--text);
+        background:
+          radial-gradient(circle at top right, rgba(255, 221, 120, 0.45), transparent 28%),
+          radial-gradient(circle at left 20%, rgba(255, 169, 109, 0.22), transparent 25%),
+          linear-gradient(180deg, var(--bg) 0%, #fffef9 100%);
+        line-height: 1.7;
+      }
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
+      img {
+        max-width: 100%;
+        display: block;
+      }
+
+      .container {
+        width: min(calc(100% - 32px), var(--max-width));
+        margin: 0 auto;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 20;
+        backdrop-filter: blur(14px);
+        background: rgba(255, 250, 240, 0.78);
+        border-bottom: 1px solid rgba(45, 36, 28, 0.06);
+      }
+
+      .site-header__inner {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 16px;
+        padding: 14px 0;
+      }
+
+      .brand {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        font-weight: 800;
+        letter-spacing: 0.02em;
+      }
+
+      .brand img {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        box-shadow: 0 8px 18px rgba(0, 0, 0, 0.12);
+      }
+
+      .nav {
+        display: flex;
+        gap: 18px;
+        font-size: 14px;
+        color: var(--subtext);
+      }
+
+      .nav a:hover {
+        color: var(--text);
+      }
+
+      .hero {
+        padding: 72px 0 48px;
+      }
+
+      .hero__grid {
+        display: grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 40px;
+        align-items: center;
+      }
+
+      .eyebrow {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.9);
+        border: 1px solid rgba(45, 36, 28, 0.08);
+        color: var(--subtext);
+        font-size: 14px;
+        font-weight: 700;
+      }
+
+      h1 {
+        margin: 18px 0 16px;
+        font-size: clamp(36px, 6vw, 68px);
+        line-height: 1.05;
+        letter-spacing: -0.04em;
+      }
+
+      .hero__lead {
+        font-size: clamp(17px, 2.4vw, 21px);
+        color: var(--subtext);
+        max-width: 42rem;
+        margin-bottom: 28px;
+      }
+
+      .hero__actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+        margin-bottom: 24px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        padding: 15px 22px;
+        border-radius: 999px;
+        font-weight: 800;
+        transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+      }
+
+      .button--primary {
+        background: var(--primary);
+        color: white;
+        box-shadow: 0 14px 26px rgba(229, 111, 34, 0.28);
+      }
+
+      .button--primary:hover {
+        background: var(--primary-dark);
+      }
+
+      .button--secondary {
+        background: rgba(255, 255, 255, 0.94);
+        border: 1px solid rgba(45, 36, 28, 0.1);
+        color: var(--text);
+      }
+
+      .hero__note {
+        font-size: 14px;
+        color: var(--subtext);
+      }
+
+      .hero-card {
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(255, 250, 236, 0.96));
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        border-radius: 32px;
+        padding: 28px;
+      }
+
+      .hero-card__top {
+        display: flex;
+        align-items: center;
+        gap: 18px;
+        margin-bottom: 22px;
+      }
+
+      .hero-card__icon {
+        width: 88px;
+        height: 88px;
+        border-radius: 24px;
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.14);
+      }
+
+      .hero-card__title {
+        font-size: 28px;
+        font-weight: 900;
+        line-height: 1.2;
+      }
+
+      .hero-card__subtitle {
+        margin-top: 8px;
+        color: var(--subtext);
+        font-size: 15px;
+      }
+
+      .feature-points {
+        display: grid;
+        gap: 12px;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+      }
+
+      .feature-points li {
+        display: flex;
+        gap: 12px;
+        align-items: flex-start;
+        padding: 14px 16px;
+        border-radius: 18px;
+        background: rgba(255, 255, 255, 0.72);
+        border: 1px solid rgba(45, 36, 28, 0.06);
+      }
+
+      .feature-points strong {
+        display: block;
+        margin-bottom: 2px;
+      }
+
+      .emoji {
+        font-size: 22px;
+        line-height: 1;
+        margin-top: 2px;
+      }
+
+      .section {
+        padding: 28px 0 72px;
+      }
+
+      .section h2 {
+        font-size: clamp(28px, 4vw, 42px);
+        line-height: 1.15;
+        letter-spacing: -0.03em;
+        margin: 0 0 14px;
+      }
+
+      .section__lead {
+        color: var(--subtext);
+        max-width: 44rem;
+        margin-bottom: 28px;
+      }
+
+      .cards {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        border-radius: var(--radius);
+        padding: 24px;
+      }
+
+      .card h3 {
+        margin: 0 0 10px;
+        font-size: 20px;
+      }
+
+      .card p {
+        margin: 0;
+        color: var(--subtext);
+      }
+
+      .steps {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 18px;
+      }
+
+      .step {
+        position: relative;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        padding: 24px;
+      }
+
+      .step__number {
+        width: 38px;
+        height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 50%;
+        background: var(--primary);
+        color: white;
+        font-weight: 900;
+        margin-bottom: 16px;
+      }
+
+      .step h3 {
+        margin: 0 0 8px;
+      }
+
+      .step p {
+        margin: 0;
+        color: var(--subtext);
+      }
+
+      .story {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+      }
+
+      .story .card {
+        min-height: 100%;
+      }
+
+      .quote {
+        font-size: clamp(22px, 3.5vw, 32px);
+        line-height: 1.45;
+        font-weight: 800;
+        letter-spacing: -0.03em;
+      }
+
+      .cta {
+        padding-bottom: 88px;
+      }
+
+      .cta-box {
+        background: linear-gradient(135deg, #ffd66d 0%, #ffb46d 100%);
+        border-radius: 32px;
+        padding: 36px;
+        box-shadow: 0 28px 50px rgba(229, 111, 34, 0.18);
+      }
+
+      .cta-box h2 {
+        margin-top: 0;
+      }
+
+      .cta-box p {
+        max-width: 42rem;
+        color: rgba(45, 36, 28, 0.85);
+      }
+
+      .site-footer {
+        border-top: 1px solid rgba(45, 36, 28, 0.08);
+        padding: 24px 0 36px;
+        color: var(--subtext);
+        font-size: 14px;
+      }
+
+      @media (max-width: 960px) {
+        .hero__grid,
+        .cards,
+        .steps,
+        .story {
+          grid-template-columns: 1fr;
+        }
+
+        .hero {
+          padding-top: 48px;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .site-header__inner {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+
+        .nav {
+          flex-wrap: wrap;
+          gap: 12px 16px;
+        }
+
+        .hero-card__top {
+          align-items: flex-start;
+        }
+
+        .hero-card__icon {
+          width: 72px;
+          height: 72px;
+          border-radius: 20px;
+        }
+
+        .cta-box,
+        .hero-card,
+        .card,
+        .step {
+          padding: 22px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container site-header__inner">
+        <a class="brand" href="#top">
+          <img src="img/app-icon.jpg" alt="ぴょんぴょんレースのアプリアイコン" />
+          <span>ぴょんぴょんレース</span>
+        </a>
+        <nav class="nav">
+          <a href="#features">特徴</a>
+          <a href="#how-to-play">遊び方</a>
+          <a href="#concept">コンセプト</a>
+        </nav>
+      </div>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="container hero__grid">
+          <div>
+            <div class="eyebrow">🎮 近くの友達と、その場ですぐ対戦</div>
+            <h1>ぴょんぴょん跳ねて、<br />ランチがレース会場に。</h1>
+            <p class="hero__lead">
+              ぴょんぴょんレースは、近くにいる友達とその場ですぐに対戦できるローカル対戦レースゲームです。引っ張ってジャンプするだけのシンプル操作で、思わず「もう一回！」が止まりません。
+            </p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="https://apps.apple.com/jp/app/momentnow/id6762581717">アプリを見る</a>
+              <a class="button button--secondary" href="#concept">コンセプトを見る</a>
+            </div>
+            <p class="hero__note">
+              iPhone を持ち寄って、その場で接続。サーバー不要で、すぐに対戦できます。
+            </p>
+          </div>
+
+          <div class="hero-card">
+            <div class="hero-card__top">
+              <img class="hero-card__icon" src="img/app-icon.jpg" alt="ぴょんぴょんレースのアプリアイコン" />
+              <div>
+                <div class="hero-card__title">ぴょんぴょんレース</div>
+                <div class="hero-card__subtitle">近くの友達とその場で対戦する、シュールで盛り上がるローカル対戦レース</div>
+              </div>
+            </div>
+            <ul class="feature-points">
+              <li>
+                <span class="emoji">📍</span>
+                <div>
+                  <strong>その場ですぐ対戦</strong>
+                  <span>近くにいる友達とすぐにつながって、そのままレース開始。</span>
+                </div>
+              </li>
+              <li>
+                <span class="emoji">🌀</span>
+                <div>
+                  <strong>引っ張ってジャンプ</strong>
+                  <span>下に引っ張って離すだけ。シンプルなのに、妙にアツい駆け引き。</span>
+                </div>
+              </li>
+              <li>
+                <span class="emoji">🍱</span>
+                <div>
+                  <strong>ランチで盛り上がる</strong>
+                  <span>ちょっとした集まりが、なぜかみんなで笑うレース会場に変わります。</span>
+                </div>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="features">
+        <div class="container">
+          <h2>ただのレースじゃない。<br />“その場で笑える”のが、このゲームです。</h2>
+          <p class="section__lead">
+            ぴょんぴょんレースは、オンラインで黙々と遊ぶゲームではありません。近くの友達と同じ空間で、すぐつながって、すぐ競って、思わず声が出る。そんな体験を目指しています。
+          </p>
+          <div class="cards">
+            <article class="card">
+              <h3>近くの友達とその場で対戦</h3>
+              <p>サーバー不要。近くにいる人とすぐにつながるから、集まったその瞬間にレースが始まります。</p>
+            </article>
+            <article class="card">
+              <h3>シンプルなのに奥深い操作</h3>
+              <p>下に引っ張って離すだけの簡単操作。ジャンプの強さとタイミングで、結果が大きく変わります。</p>
+            </article>
+            <article class="card">
+              <h3>多人数でワイワイ盛り上がる</h3>
+              <p>3〜4人で遊ぶと、抜きつ抜かれつの展開やミスがそのまま笑いにつながります。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="how-to-play">
+        <div class="container">
+          <h2>遊び方はシンプル。<br />でも、なぜか本気になる。</h2>
+          <p class="section__lead">
+            すぐに始められて、すぐに悔しくなって、すぐにもう一回やりたくなる。そんなテンポの良さを大切にしています。
+          </p>
+          <div class="steps">
+            <article class="step">
+              <div class="step__number">1</div>
+              <h3>近くの友達とつながる</h3>
+              <p>同じ場所にいる友達とすぐに接続。面倒な登録やサーバー設定はありません。</p>
+            </article>
+            <article class="step">
+              <div class="step__number">2</div>
+              <h3>引っ張ってジャンプ</h3>
+              <p>画面を下に引っ張って離すだけ。ジャンプの強さでコースの攻略が変わります。</p>
+            </article>
+            <article class="step">
+              <div class="step__number">3</div>
+              <h3>ゴールを目指して競争</h3>
+              <p>一瞬のミスも、まさかの逆転も盛り上がりポイント。終わったあとに自然と「もう一回」が出ます。</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="concept">
+        <div class="container story">
+          <article class="card">
+            <h2>このゲームのはじまり</h2>
+            <p>
+              昔、友達の家に集まってゲームで遊んでいたような、あのローカル対戦の楽しさ。ぴょんぴょんレースは、その感覚をスマホで今らしく再構築したい、という思いから生まれました。
+            </p>
+            <p>
+              ひとりで静かに遊ぶより、近くの誰かと笑いながら遊ぶ方が記憶に残る。そんなゲーム体験を目指しています。
+            </p>
+          </article>
+          <article class="card">
+            <div class="quote">
+              「ただジャンプするだけなのに、<br />なぜか盛り上がる。」
+            </div>
+            <p>
+              ぴょんぴょんレースの魅力は、見た目のシュールさと、想像以上に真剣になるレース展開。説明しすぎなくても、遊べばすぐに分かる楽しさがあります。
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section cta">
+        <div class="container">
+          <div class="cta-box">
+            <h2>ランチ、飲み会、ちょっとした集まりに。</h2>
+            <p>
+              ぴょんぴょんレースは、近くの友達とその場ですぐに対戦できるローカル対戦レースゲームです。シンプルな操作だからこそ、誰でもすぐ参加できて、気づけばみんなで盛り上がれます。
+            </p>
+            <div class="hero__actions">
+              <a class="button button--primary" href="#top">もう一度見る</a>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>© ぴょんぴょんレース</p>
+      </div>
+    </footer>
+  </body>
+</html>
