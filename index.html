@@ -1,7 +1,597 @@
-<html>
+<!doctype html>
+<html lang="ja">
 <head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hikaru Sato</title>
+  <meta name="description" content="Hikaru Sato の個人サイト。MomentNow、ぴょんぴょんレース、技術記事、プロフィールへのリンクをまとめています。" />
+  <meta property="og:title" content="Hikaru Sato" />
+  <meta property="og:description" content="個人で作っているアプリ、技術記事、プロフィールへのリンクをまとめています。" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://hikarusato.github.io/" />
+  <meta name="theme-color" content="#f6f7f9" />
+  <style>
+    :root {
+      --surface: #ffffff;
+      --surface-soft: #eef2f5;
+      --text: #17202a;
+      --muted: #5f6c78;
+      --line: #dfe5eb;
+      --accent: #0f766e;
+      --accent-strong: #0b5f59;
+      --ink: #101418;
+      --radius: 8px;
+      --max: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--text);
+      background:
+        linear-gradient(180deg, rgba(246, 247, 249, 0.95), rgba(246, 247, 249, 1)),
+        repeating-linear-gradient(90deg, rgba(23, 32, 42, 0.04) 0 1px, transparent 1px 64px);
+      font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Noto Sans JP", "Segoe UI", sans-serif;
+      line-height: 1.75;
+      letter-spacing: 0;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    .container {
+      width: min(calc(100% - 32px), var(--max));
+      margin: 0 auto;
+    }
+
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(246, 247, 249, 0.86);
+      border-bottom: 1px solid rgba(223, 229, 235, 0.82);
+      backdrop-filter: blur(16px);
+    }
+
+    .site-header__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      min-height: 68px;
+    }
+
+    .brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      letter-spacing: 0;
+    }
+
+    .brand__mark {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 34px;
+      height: 34px;
+      color: #ffffff;
+      background: var(--ink);
+      border-radius: 8px;
+      font-size: 14px;
+      line-height: 1;
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav a,
+    .text-link {
+      border-radius: 8px;
+      transition: color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+    }
+
+    .nav a {
+      padding: 8px 10px;
+    }
+
+    .nav a:hover,
+    .text-link:hover {
+      color: var(--text);
+      background: rgba(15, 118, 110, 0.08);
+    }
+
+    .hero {
+      padding: 76px 0 56px;
+    }
+
+    .hero__grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      gap: 48px;
+      align-items: end;
+    }
+
+    .eyebrow {
+      margin: 0 0 18px;
+      color: var(--accent-strong);
+      font-size: 14px;
+      font-weight: 800;
+    }
+
+    h1,
+    h2,
+    h3,
+    p {
+      margin-top: 0;
+    }
+
+    h1 {
+      max-width: 760px;
+      margin-bottom: 20px;
+      color: var(--ink);
+      font-size: clamp(42px, 7vw, 82px);
+      line-height: 1.02;
+      letter-spacing: 0;
+    }
+
+    .hero__lead {
+      max-width: 680px;
+      margin-bottom: 30px;
+      color: var(--muted);
+      font-size: clamp(17px, 2.1vw, 21px);
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 46px;
+      padding: 0 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 800;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .button:hover {
+      transform: translateY(-1px);
+      border-color: rgba(15, 118, 110, 0.34);
+    }
+
+    .button--primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #ffffff;
+    }
+
+    .button--primary:hover {
+      background: var(--accent-strong);
+    }
+
+    .status-panel {
+      border-left: 3px solid var(--accent);
+      padding: 4px 0 4px 20px;
+    }
+
+    .status-panel__label {
+      margin-bottom: 8px;
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .status-panel__text {
+      margin-bottom: 18px;
+      color: var(--ink);
+      font-size: 24px;
+      font-weight: 800;
+      line-height: 1.35;
+    }
+
+    .status-panel__links {
+      display: grid;
+      gap: 8px;
+    }
+
+    .text-link {
+      display: inline-flex;
+      width: fit-content;
+      padding: 4px 0;
+      color: var(--accent-strong);
+      font-weight: 800;
+    }
+
+    .section {
+      padding: 50px 0;
+    }
+
+    .section--surface {
+      background: var(--surface);
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section__header {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 24px;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      margin-bottom: 0;
+      color: var(--ink);
+      font-size: clamp(28px, 4vw, 42px);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    .section__note {
+      max-width: 410px;
+      margin-bottom: 0;
+      color: var(--muted);
+      font-size: 15px;
+    }
+
+    .project-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .project-card {
+      display: grid;
+      grid-template-rows: auto 1fr auto;
+      min-height: 100%;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      box-shadow: 0 18px 40px rgba(16, 20, 24, 0.06);
+    }
+
+    .project-card__head {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .app-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 8px;
+      border: 1px solid rgba(16, 20, 24, 0.08);
+      object-fit: cover;
+      background: var(--surface-soft);
+    }
+
+    .app-icon--momentnow {
+      object-fit: contain;
+      padding: 8px;
+    }
+
+    .project-card h3 {
+      margin-bottom: 4px;
+      color: var(--ink);
+      font-size: 24px;
+      line-height: 1.25;
+    }
+
+    .project-card__meta {
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .project-card__body {
+      margin-bottom: 22px;
+      color: var(--muted);
+    }
+
+    .tag-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 22px;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tag-list li {
+      padding: 5px 9px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--surface-soft);
+      color: #3d4a55;
+      font-size: 12px;
+      font-weight: 800;
+      line-height: 1.2;
+    }
+
+    .project-card__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .link-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .profile-link {
+      display: flex;
+      min-height: 150px;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--surface);
+      transition: transform 0.18s ease, border-color 0.18s ease;
+    }
+
+    .profile-link:hover {
+      transform: translateY(-1px);
+      border-color: rgba(15, 118, 110, 0.34);
+    }
+
+    .profile-link__kicker {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 800;
+    }
+
+    .profile-link__title {
+      margin: 8px 0;
+      color: var(--ink);
+      font-size: 24px;
+      font-weight: 900;
+      line-height: 1.25;
+    }
+
+    .profile-link__desc {
+      margin: 0;
+      color: var(--muted);
+    }
+
+    .site-footer {
+      padding: 30px 0 44px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    @media (max-width: 840px) {
+      .site-header__inner,
+      .section__header {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .hero {
+        padding-top: 54px;
+      }
+
+      .hero__grid,
+      .project-grid,
+      .link-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .status-panel {
+        border-left: 0;
+        border-top: 3px solid var(--accent);
+        padding: 18px 0 0;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .nav {
+        width: 100%;
+        justify-content: space-between;
+      }
+
+      .nav a {
+        padding: 6px 0;
+      }
+
+      .hero {
+        padding-bottom: 40px;
+      }
+
+      .project-card__head {
+        align-items: flex-start;
+      }
+
+      .app-icon {
+        width: 60px;
+        height: 60px;
+      }
+
+      .button {
+        width: 100%;
+      }
+    }
+  </style>
 </head>
 <body>
-<h1>Hikaru Sato</h1>
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a class="brand" href="./">
+        <span class="brand__mark">HS</span>
+        <span>Hikaru Sato</span>
+      </a>
+      <nav class="nav" aria-label="Primary navigation">
+        <a href="#projects">Projects</a>
+        <a href="#profile">Profile</a>
+        <a href="https://zenn.dev/hs7" target="_blank" rel="noopener">Zenn</a>
+        <a href="https://lapras.com/public/XSARULD" target="_blank" rel="noopener">LAPRAS</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container hero__grid">
+        <div>
+          <p class="eyebrow">Personal site / Apps / Articles</p>
+          <h1>作ったものと、書いたこと。</h1>
+          <p class="hero__lead">
+            個人で作っている iOS アプリやゲーム、技術記事、プロフィールをまとめています。
+            最近は動画共有体験と、近くの友達と遊べるローカル対戦ゲームを作っています。
+          </p>
+          <div class="actions">
+            <a class="button button--primary" href="#projects">アプリを見る</a>
+            <a class="button" href="https://zenn.dev/hs7" target="_blank" rel="noopener">記事を読む</a>
+          </div>
+        </div>
+
+        <aside class="status-panel" aria-label="Featured work">
+          <p class="status-panel__label">Featured</p>
+          <p class="status-panel__text">
+            MomentNow と ぴょんぴょんレースを公開中。
+          </p>
+          <div class="status-panel__links">
+            <a class="text-link" href="./momentnow/">MomentNow</a>
+            <a class="text-link" href="./bouncy-race/">ぴょんぴょんレース</a>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="section section--surface" id="projects">
+      <div class="container">
+        <div class="section__header">
+          <h2>Projects</h2>
+          <p class="section__note">
+            アプリの紹介ページとストア、サポートページに移動できます。
+          </p>
+        </div>
+
+        <div class="project-grid">
+          <article class="project-card">
+            <div>
+              <div class="project-card__head">
+                <img class="app-icon app-icon--momentnow" src="./momentnow/img/momentnow_camera.png" alt="MomentNow app icon" />
+                <div>
+                  <h3>MomentNow</h3>
+                  <p class="project-card__meta">動画撮影・自動共有アプリ</p>
+                </div>
+              </div>
+              <p class="project-card__body">
+                グループに参加している人へ、撮影した動画を自動共有できるアプリです。
+                URL 共有にも対応しているため、アプリを持っていない相手にもブラウザで動画を届けられます。
+              </p>
+              <ul class="tag-list" aria-label="MomentNow features">
+                <li>iOS</li>
+                <li>Video sharing</li>
+                <li>Groups</li>
+              </ul>
+            </div>
+            <div class="project-card__actions">
+              <a class="button button--primary" href="./momentnow/">紹介ページ</a>
+              <a class="button" href="./momentnow/support/">サポート</a>
+            </div>
+          </article>
+
+          <article class="project-card">
+            <div>
+              <div class="project-card__head">
+                <img class="app-icon" src="./bouncy-race/img/app-icon.jpg" alt="ぴょんぴょんレース app icon" />
+                <div>
+                  <h3>ぴょんぴょんレース</h3>
+                  <p class="project-card__meta">近くの友達と遊ぶローカル対戦レース</p>
+                </div>
+              </div>
+              <p class="project-card__body">
+                近くにいる友達とその場ですぐ対戦できるレースゲームです。
+                引っ張ってジャンプするだけの操作で、ランチや集まりの短い時間でも遊べます。
+              </p>
+              <ul class="tag-list" aria-label="Bouncy Race features">
+                <li>iOS</li>
+                <li>Local multiplayer</li>
+                <li>Casual game</li>
+              </ul>
+            </div>
+            <div class="project-card__actions">
+              <a class="button button--primary" href="./bouncy-race/">紹介ページ</a>
+              <a class="button" href="./bouncy-race/support/">サポート</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="profile">
+      <div class="container">
+        <div class="section__header">
+          <h2>Profile</h2>
+          <p class="section__note">
+            技術記事や公開プロフィールはこちらにまとめています。
+          </p>
+        </div>
+
+        <div class="link-grid">
+          <a class="profile-link" href="https://zenn.dev/hs7" target="_blank" rel="noopener">
+            <span class="profile-link__kicker">Articles</span>
+            <span class="profile-link__title">Zenn</span>
+            <p class="profile-link__desc">開発中に得た知見や実装メモを書いています。</p>
+          </a>
+
+          <a class="profile-link" href="https://github.com/hikaruSato/" target="_blank" rel="noopener">
+            <span class="profile-link__kicker">Code</span>
+            <span class="profile-link__title">GitHub</span>
+            <p class="profile-link__desc">公開しているコードやリポジトリはこちら。</p>
+          </a>
+
+          <a class="profile-link" href="https://lapras.com/public/XSARULD" target="_blank" rel="noopener">
+            <span class="profile-link__kicker">Public profile</span>
+            <span class="profile-link__title">LAPRAS</span>
+            <p class="profile-link__desc">スキル、アウトプット、公開プロフィールはこちら。</p>
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <span>© Hikaru Sato</span>
+    </div>
+  </footer>
 </body>
 </html>
