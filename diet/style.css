@@ -1,0 +1,140 @@
+:root {
+  --bg: #f4f6f2;
+  --card: #ffffff;
+  --text: #182018;
+  --muted: #667062;
+  --border: rgba(24, 32, 24, 0.1);
+  --primary: #58bf63;
+  --primary-dark: #278836;
+  --shadow: 0 24px 70px rgba(31, 55, 30, 0.12);
+  --radius: 24px;
+  --max-width: 920px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Hiragino Sans", "Yu Gothic", "Noto Sans JP", sans-serif;
+  color: var(--text);
+  background:
+    radial-gradient(circle at top right, rgba(88, 191, 99, 0.24), transparent 28%),
+    linear-gradient(180deg, #f8faf5 0%, var(--bg) 100%);
+  line-height: 1.8;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: var(--primary-dark);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+.container {
+  width: min(calc(100% - 32px), var(--max-width));
+  margin: 0 auto;
+  padding: 48px 0 72px;
+}
+
+.hero {
+  padding: 48px 0 28px;
+}
+
+.eyebrow {
+  display: inline-flex;
+  margin: 0 0 14px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  background: rgba(88, 191, 99, 0.12);
+  color: var(--primary-dark);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+h1 {
+  margin: 0 0 14px;
+  font-size: clamp(34px, 6vw, 56px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+
+h2 {
+  margin: 34px 0 12px;
+  font-size: 22px;
+  line-height: 1.35;
+}
+
+p,
+li {
+  color: var(--muted);
+}
+
+ul {
+  padding-left: 1.4em;
+}
+
+li + li {
+  margin-top: 6px;
+}
+
+.lead {
+  max-width: 42rem;
+  margin: 0;
+  font-size: 18px;
+}
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding: clamp(24px, 5vw, 40px);
+}
+
+.document h1 {
+  font-size: clamp(30px, 5vw, 46px);
+}
+
+.updated {
+  margin-top: -4px;
+  font-size: 14px;
+}
+
+.back-link {
+  display: inline-flex;
+  margin-bottom: 18px;
+  font-weight: 800;
+}
+
+.link-list {
+  display: grid;
+  gap: 12px;
+  margin-top: 18px;
+}
+
+.link-list a {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 16px 18px;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  color: var(--text);
+  font-weight: 800;
+}
+
+.link-list a::after {
+  content: ">";
+  color: var(--primary-dark);
+}
+
+@media (max-width: 640px) {
+  .container {
+    padding-top: 28px;
+  }
+}
