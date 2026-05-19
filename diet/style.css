@@ -45,6 +45,24 @@ a:hover {
   padding: 48px 0 28px;
 }
 
+.hero-brand {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+}
+
+.app-icon {
+  flex: 0 0 auto;
+  width: 104px;
+  height: 104px;
+  border-radius: 23px;
+  box-shadow: 0 18px 42px rgba(31, 55, 30, 0.16);
+}
+
+.hero-copy {
+  min-width: 0;
+}
+
 .eyebrow {
   display: inline-flex;
   margin: 0 0 14px;
@@ -133,8 +151,24 @@ li + li {
   color: var(--primary-dark);
 }
 
+.support-note {
+  margin: 24px 0 0;
+  font-size: 14px;
+}
+
 @media (max-width: 640px) {
   .container {
     padding-top: 28px;
+  }
+
+  .hero-brand {
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .app-icon {
+    width: 76px;
+    height: 76px;
+    border-radius: 17px;
   }
 }
